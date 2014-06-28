@@ -1,0 +1,27 @@
+<h1>New art</h1>
+<div class="tools">
+  <a href="#tools_sketch" data-tool="marker">Marker</a>
+  <a href="#tools_sketch" data-tool="eraser">Eraser</a>
+</div>
+<canvas id="tools_sketch" width="800" height="300" style="background: url(http://farm1.static.flickr.com/91/239595759_3c3626b24a_b.jpg) no-repeat center center;"></canvas>
+<script type="text/javascript">
+  $(function() {
+    $('#tools_sketch').sketch({defaultColor: "#ff0"});
+  });
+  
+  
+  function saveImage() {
+    var imgdata = $('#tools_sketch').toDataURL();  // デフォルトだとpng, 引数でjpegとかも可能
+    imgdata = imgdata.replace('data:image/png;base64,', '');  // 頭のいらない部分を落とす
+
+    new Ajax.Request(<画像保存CGIのURL>, {
+        parameters: 'img=' + imgdata,  // 画像データを送信
+        onComplete: function(res) {  // callback 別になくてもよいが。
+            if (res.responseText != 'ok') alert('error');
+        }
+    });
+}
+</script>
+<%= render 'form' %>
+
+<%= link_to 'Back', arts_path %>

@@ -1,0 +1,31 @@
+<h1>Listing habitants</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Password</th>
+      <th>Mail address</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @habitants.each do |habitant| %>
+      <tr>
+        <td><%= habitant.name %></td>
+        <td><%= habitant.password %></td>
+        <td><%= habitant.mail_address %></td>
+        <td><%= link_to 'Show', habitant %></td>
+        <td><%= link_to 'Edit', edit_habitant_path(habitant) %></td>
+        <td><%= link_to 'Destroy', habitant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Habitant', new_habitant_path %>

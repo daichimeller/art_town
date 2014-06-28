@@ -1,0 +1,9 @@
+require 'rubygems'
+require 'rspec'
+
+describe '#to_i' do
+  it "should return 100" do
+     @total = '100'
+     @total.to_i.should == 100
+  end
+end
